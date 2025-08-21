@@ -14,3 +14,5 @@ export const typography = {
   body4: { fontSize: 12, fontWeight: 400 as const, lineHeight: 24 },
   button: { fontSize: 16, fontWeight: 500 as const, lineHeight: 24 },
 };
+
+export type Typography = typeof typography;

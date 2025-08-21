@@ -13,7 +13,7 @@ export type Colors = {
   purple500: string;
   redLight: string;
   redNormal: string;
-  greenLigth: string;
+  greenLight: string;
   greenNormal: string;
   yellowLight: string;
   yellowNormal: string;
@@ -22,7 +22,7 @@ export type Colors = {
   textColorIcon: string;
 };
 
-export const lightColors = {
+export const lightColors : Colors = {
   background: "#f7f7f7",
   backgroundSecondary: "#E0E0E0",
   white: "#FFFFFF",
@@ -35,18 +35,18 @@ export const lightColors = {
   blue500: "#002952",
   purple400: "#7E57C2",
   purple500: "#673AB7",
-  redLigth: "#FF3232",
+  redLight: "#FF3232",
   redNormal: "#E20303",
-  greenLigth: "#247901",
+  greenLight: "#247901",
   greenNormal: "#164D00",
-  yellowLigth: "#FFB041",
+  yellowLight: "#FFB041",
   yellowNormal: "#FF9500",
   textColor: "#000000",
   textColorBlue: "#002952",
   textColorIcon: "#424242",
 };
 
-export const darkColors = {
+export const darkColors : Colors = {
   background: "#222222",
   backgroundSecondary: "#333333",
   white: "#FFFFFF",
@@ -59,11 +59,11 @@ export const darkColors = {
   blue500: "#002952",
   purple400: "#7E57C2",
   purple500: "#673AB7",
-  redLigth: "#FF3232",
+  redLight: "#FF3232",
   redNormal: "#E20303",
-  greenLigth: "#3dcc04ff",
+  greenLight: "#3dcc04ff",
   greenNormal: "#31a503ff",
-  yellowLigth: "#FFB041",
+  yellowLight: "#FFB041",
   yellowNormal: "#FF9500",
   textColor: "#f7f7f7",
   textColorBlue: "#B0C0D0",
