@@ -1,5 +1,6 @@
 import { Button, Image, Text, View } from "react-native"
 import Logo from '../../../assets/images/logo.png'
+import { LedgerCard } from "@/app/components/LedgerCard"
 
 export const InitialView = () => {
     return(
