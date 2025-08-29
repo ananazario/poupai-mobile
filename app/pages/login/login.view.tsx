@@ -52,12 +52,6 @@ export const LoginView = () => {
                 size={26}
                 />
             </TouchableOpacity>
-            <TouchableOpacity>
-                <FontAwesome
-                name="facebook"
-                size={26}
-                />
-            </TouchableOpacity>
         </View>
       </View>
     </View>
