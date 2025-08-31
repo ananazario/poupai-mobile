@@ -1,21 +1,24 @@
-import { Button, Image, Text, View } from "react-native"
-import Logo from '../../../assets/images/logo.png'
-import { LedgerCard } from "@/app/components/LedgerCard"
+import { Button, Image, Text, View } from "react-native";
+import HomeScreenImage from "../../../assets/images/home-screen.png";
+import { useTheme } from "@/app/theme/ThemeContext";
+import { initialStyles } from "./initial.styles";
 
 export const InitialView = () => {
-    return(
-        <View>
-            <View>
-                <Image source={Logo} resizeMode="contain"/>
-                <Text>Poup.ai</Text>
-            </View>
-            <View>
-                <View>
-                    <Text>Bem vindo!</Text>
-                    <Text>Descubra soluções financeiras inovadoras e confiáveis para um futuro próspero.</Text>
-                </View>
-                <Button title="Acessar"/>
-            </View>
-        </View>
-    )
-}
+
+  const {colors} = useTheme();
+  const styles = initialStyles(colors);
+
+  return (
+    <View style={styles.container}>
+      <Image source={HomeScreenImage} resizeMode="contain" />
+      <View style={styles.content}>
+        <Text style={styles.title}>Boas Vindas!</Text>
+        <Text style={styles.text}>
+          Descubra soluções financeiras inovadoras e confiáveis para um futuro
+          próspero.
+        </Text>
+      </View>
+      <Button title="Acessar" />
+    </View>
+  );
+};
