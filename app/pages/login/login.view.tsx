@@ -1,6 +1,7 @@
 import {
   Image,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -15,6 +16,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { loginModel } from "./login.model";
 import { Input } from "@/app/components/Input";
 import { Button } from "@/app/components/Button";
+import { useTheme } from "@/app/theme/ThemeContext";
+import { loginStyles } from "./login.styles";
 
 export const LoginView = () => {
   const{
@@ -22,45 +25,70 @@ export const LoginView = () => {
     setChecked,
   } = loginModel();
 
+  const {colors} = useTheme();
+  const styles = loginStyles(colors);
+
   return (
-    <KeyboardAvoidingView>
-      <TouchableWithoutFeedback>
-        <ScrollView>
-          <View>
-            <View>
-              <TouchableOpacity>
-                <ChevronLeft />
-              </TouchableOpacity>
-            </View>
-            <View>
-              <Text>Acesse</Text>
-              <Text>Com seu login e senha</Text>
-            </View>
-            <View>
-              <Input type="text" label="Email" placeholder="Digite seu email"/>
-              <Input type="password" label="Senha" placeholder="Digite sua Senha"/>
-              <View>
-                <Checkbox value={isChecked} onValueChange={setChecked} />
-                <Text>Permanecer conectado</Text>
-              </View>
-              <Button title="Entrar" color="blue" />
-              <Text>
-                Ainda não tem uma conta? <Link href="/_sitemap">Cadastre-se</Link>
-              </Text>
-              <View>
-                <View />
-                <Text>Ou continue com</Text>
-                <View />
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <FontAwesome name="google" size={26} />
-                </TouchableOpacity>
-              </View>
-            </View>
+    <KeyboardAvoidingView
+  style={{ flex: 1 }}
+  behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+>
+  <TouchableWithoutFeedback accessible={false}>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      keyboardShouldPersistTaps="handled"
+    >
+      <View style={styles.container}>
+        <View>
+          <TouchableOpacity style={styles.chevron}>
+            <ChevronLeft color={colors.textColor} />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.textTitle}>
+          <Text style={styles.title}>Acesse</Text>
+          <Text style={styles.paragraph}>Com seu login e senha</Text>
+        </View>
+
+        <View style={styles.content}>
+          <Input type="text" label="Email" placeholder="Digite seu email" />
+          <Input type="password" label="Senha" placeholder="Digite sua Senha" />
+
+          <View style={styles.checkSection}>
+            <Checkbox
+              value={isChecked}
+              onValueChange={setChecked}
+              color={isChecked ? colors.blue500 : colors.border}
+            />
+            <Text style={styles.textCheck}>Permanecer conectado</Text>
           </View>
-        </ScrollView>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+
+          <Button title="Entrar" color="blue" />
+
+          <Text style={styles.textLink}>
+            Ainda não tem uma conta?{" "}
+            <Link href="/_sitemap" style={styles.link}>
+              Cadastre-se
+            </Link>
+          </Text>
+
+          <View style={styles.containerLine}>
+            <View style={styles.line} />
+            <Text style={styles.text}>Ou continue com</Text>
+            <View style={styles.line} />
+          </View>
+
+          <View style={styles.socialContainer}>
+            <TouchableOpacity style={styles.socialButton}>
+              <FontAwesome name="google" size={26} color={colors.textColor} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
+  </TouchableWithoutFeedback>
+</KeyboardAvoidingView>
+
   );
 };
