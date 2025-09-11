@@ -6,7 +6,7 @@ export default function Index() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
           <InitialView />
         </SafeAreaView>
       </SafeAreaProvider>
