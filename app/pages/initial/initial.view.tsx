@@ -22,7 +22,7 @@ export const InitialView = () => {
           próspero.
         </Text>
       </View>
-      <Button color="white" title="Começar"/>
+      <Button color="white" title="Começar" href='/Login'/>
     </View>
   );
 };
