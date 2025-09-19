@@ -1,20 +1,20 @@
 import {
-  Button,
   Image,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import Index from "@/app/app";
 import { ChevronLeft } from "lucide-react-native";
+import { Button } from "@/app/components/Button";
 
 export const SignupView = () => {
   return (
     <View>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push('/Login')}>
           <ChevronLeft />
         </TouchableOpacity>
       </View>
@@ -39,7 +39,7 @@ export const SignupView = () => {
           <Text>Confirme sua senha</Text>
           <TextInput placeholder="Digite sua Senha novamente" />
         </View>
-        <Button title="Cadastrar" />
+        <Button color="blue" title="Cadastrar" href="/Login"/>
         <Text>
           Já poussui uma conta? <Link href="index">Login</Link>
         </Text>

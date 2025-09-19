@@ -1,10 +1,10 @@
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import 'react-native-reanimated';
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import "react-native-reanimated";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -13,9 +13,10 @@ export default function RootLayout() {
   }
 
   return (
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }}/>
-        <Stack.Screen name="Signup/index" options={{ headerShown: false }}/>
-      </Stack>
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="Login/index" options={{ headerShown: false }} />
+      <Stack.Screen name="Signup/index" options={{ headerShown: false }} />
+    </Stack>
   );
 }
