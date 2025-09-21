@@ -1,13 +1,12 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { InitialView } from "./pages/initial/initial.view";
-import { ThemeProvider } from "./theme/ThemeContext";
-import { SignupView } from "./pages/Signup/signup.view";
+import { SignupView } from "../pages/Signup/signup.view";
+import { ThemeProvider } from "../theme/ThemeContext";
 
-export default function Index() {
+export default function LoginPage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
           <SignupView />
         </SafeAreaView>
       </SafeAreaProvider>
