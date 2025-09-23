@@ -7,8 +7,8 @@ export default function Index() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
-        <SafeAreaView>
-          <SignupView />
+        <SafeAreaView style={{ flex: 1 }}>
+          <InitialView />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>
