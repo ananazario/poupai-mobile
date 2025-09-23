@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import Checkbox from "expo-checkbox";
 import { ChevronLeft } from "lucide-react-native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -41,7 +41,7 @@ export const LoginView = () => {
     >
       <View style={styles.container}>
         <View>
-          <TouchableOpacity style={styles.chevron}>
+          <TouchableOpacity onPress={() => router.push("/")} style={styles.chevron}>
             <ChevronLeft color={colors.textColor} />
           </TouchableOpacity>
         </View>
@@ -64,11 +64,11 @@ export const LoginView = () => {
             <Text style={styles.textCheck}>Permanecer conectado</Text>
           </View>
 
-          <Button title="Entrar" color="blue" />
+          <Button title="Entrar" color="blue" href='/Home' />
 
           <Text style={styles.textLink}>
             Ainda não tem uma conta?{" "}
-            <Link href="/_sitemap" style={styles.link}>
+            <Link href="/Signup" style={styles.link}>
               Cadastre-se
             </Link>
           </Text>
