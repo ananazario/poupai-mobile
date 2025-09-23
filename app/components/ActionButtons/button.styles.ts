@@ -14,6 +14,6 @@ export const actionButtonsStyle = (colors : Colors) => StyleSheet.create({
     },
     text:{
         color: colors.textColor,
-        ...typography.body5
+        ...typography.body3
     },
 })
