@@ -3,6 +3,7 @@ import HomeScreenImage from "@/assets/images/home-screen.png";
 import { Image, Text, View } from "react-native";
 import { initialStyles } from "./initial.styles";
 import { Button } from "@/app/components/Button";
+import { OptionsCard } from "@/app/components/OptionsCard";
 
 export const InitialView = () => {
   const { colors } = useTheme();
