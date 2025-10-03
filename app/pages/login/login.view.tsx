@@ -1,17 +1,20 @@
+import { FontAwesome } from "@expo/vector-icons";
+import Checkbox from "expo-checkbox";
+import { Link } from "expo-router";
+import { ChevronLeft } from "lucide-react-native";
 import {
   Button,
-  Image,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
-import { Link } from "expo-router";
-import Checkbox from "expo-checkbox";
-import { ChevronLeft } from "lucide-react-native";
-import { FontAwesome } from "@expo/vector-icons";
 
-export const LoginView = () => {
+export const LoginView = (props) => {
+  const { email, setEmail, password, setPassword } = { ...props }
+
+  console.log(email, password)
+
   return (
     <View>
       <View>
@@ -26,11 +29,11 @@ export const LoginView = () => {
       <View>
         <View>
           <Text>Email</Text>
-          <TextInput placeholder="Digite seu email" />
+          <TextInput value={email} onChangeText={setEmail} placeholder="Digite seu email" />
         </View>
         <View>
           <Text>Senha</Text>
-          <TextInput placeholder="Digite sua senha" />
+          <TextInput value={password} onChangeText={setPassword} placeholder="Digite sua senha" />
         </View>
         <View>
           <Checkbox />

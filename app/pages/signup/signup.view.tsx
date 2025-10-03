@@ -1,14 +1,12 @@
+import { Link } from "expo-router";
+import { ChevronLeft } from "lucide-react-native";
 import {
   Button,
-  Image,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
-import { Link } from "expo-router";
-import Index from "@/app/app";
-import { ChevronLeft } from "lucide-react-native";
 
 export const SignupView = () => {
   return (
