@@ -2,15 +2,15 @@ import { useTheme } from "@/app/theme/ThemeContext";
 import { SquarePen, X } from "lucide-react-native";
 import { useState } from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
-import { Button } from "../../Button";
-import { Input } from "../../Input";
-import { editModalStyles } from "./editModal.styles";
-import { EditModalProps } from "./editModal.types";
-import { DropdownSelect } from "../../Dropdown";
+import { DropdownSelect } from "../Dropdown";
+import { Input } from "../Input";
+import { Button } from "../Button";
+import { CreateModalProps } from "./createModal.types";
+import { createModalStyles } from "./createModal.styles";
 
-export const EditModal = ({ type }: EditModalProps) => {
+export const CreateModal = ({ type }: CreateModalProps) => {
   const { colors } = useTheme();
-  const styles = editModalStyles(colors);
+  const styles = createModalStyles(colors);
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -126,7 +126,7 @@ export const EditModal = ({ type }: EditModalProps) => {
                   <Button title="Cancelar" color="red" />
                 </View>
                 <View style={styles.button}>
-                  <Button title="Editar" color="blue" />
+                  <Button title="Criar" color="blue" />
                 </View>
               </View>
             </View>

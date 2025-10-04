@@ -2,11 +2,11 @@ import { useTheme } from "@/app/theme/ThemeContext";
 import { SquarePen, X } from "lucide-react-native";
 import { useState } from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
-import { Button } from "../../Button";
-import { Input } from "../../Input";
+import { Button } from "../Button";
+import { Input } from "../Input";
 import { editModalStyles } from "./editModal.styles";
 import { EditModalProps } from "./editModal.types";
-import { DropdownSelect } from "../../Dropdown";
+import { DropdownSelect } from "../Dropdown";
 
 export const EditModal = ({ type }: EditModalProps) => {
   const { colors } = useTheme();
