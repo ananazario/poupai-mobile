@@ -4,6 +4,7 @@ import { ChevronLeft } from "lucide-react-native";
 import { Text, TouchableOpacity, View } from "react-native";
 import { transactionsStyle } from "./transactions.styles";
 import { router } from "expo-router";
+import { Search } from "@/app/components/Search";
 
 export const TransactionsView = () => {
 
@@ -25,6 +26,7 @@ export const TransactionsView = () => {
             <LedgerCard type="expense" title="Despesas" amount="R$ 0,00"/>
         </View>
       </View>
+      <Search/>
     </View>
   );
 };

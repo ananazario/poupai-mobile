@@ -6,7 +6,8 @@ export const transactionsStyle = (colors : Colors) => StyleSheet.create({
         height: '100%', 
         paddingVertical: 60,
         paddingHorizontal: 30,
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        gap: 20
     },
     containerInfo:{
         padding: 20,
