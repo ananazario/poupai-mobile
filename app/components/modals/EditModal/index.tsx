@@ -6,6 +6,7 @@ import { Button } from "../../Button";
 import { Input } from "../../Input";
 import { editModalStyles } from "./editModal.styles";
 import { EditModalProps } from "./editModal.types";
+import { DropdownSelect } from "../../Dropdown";
 
 export const EditModal = ({ type }: EditModalProps) => {
   const { colors } = useTheme();
@@ -13,12 +14,30 @@ export const EditModal = ({ type }: EditModalProps) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [selectedValue, setSelectedValue] = useState<string>("");
+
   const title =
     type === "receitas"
       ? "Receita"
       : type === "despesas"
       ? "Despesas"
-      : "transferencias";
+      : "Transferências";
+
+  const isTransfer = type === "transferencias";
+  const isIncome = type === "receitas";
+
+  const dropdownBank = [
+    { label: "Nubank", value: "nu" },
+    { label: "Itau", value: "itau" },
+  ];
+  const dropdownIncome = [
+    { label: "Pix", value: "pix" },
+    { label: "Salario", value: "salary" },
+  ];
+  const dropdownExpense = [
+    { label: "Alimentação", value: "food" },
+    { label: "Saude", value: "health" },
+  ];
 
   return (
     <View>
@@ -39,6 +58,60 @@ export const EditModal = ({ type }: EditModalProps) => {
                 <X color={colors.textColor} />
               </TouchableOpacity>
             </View>
+
+            {isTransfer ? (
+              <View>
+                <DropdownSelect
+                  label="Saiu de"
+                  data={dropdownBank}
+                  placeholder="Selecione um banco"
+                  value={selectedValue}
+                  onSelect={(value) => setSelectedValue(value)}
+                />
+                <DropdownSelect
+                  label="Para"
+                  data={dropdownBank}
+                  placeholder="Selecione um banco"
+                  value={selectedValue}
+                  onSelect={(value) => setSelectedValue(value)}
+                />
+              </View>
+            ) : isIncome ? (
+              <View>
+                <DropdownSelect
+                  label="Banco"
+                  data={dropdownBank}
+                  placeholder="Selecione um banco"
+                  value={selectedValue}
+                  onSelect={(value) => setSelectedValue(value)}
+                />
+                <DropdownSelect
+                  label="Categoria"
+                  data={dropdownIncome}
+                  placeholder="Selecione a categoria"
+                  value={selectedValue}
+                  onSelect={(value) => setSelectedValue(value)}
+                />
+              </View>
+            ) : (
+              <View>
+                <DropdownSelect
+                  label="Banco"
+                  data={dropdownBank}
+                  placeholder="Selecione um banco"
+                  value={selectedValue}
+                  onSelect={(value) => setSelectedValue(value)}
+                />
+                <DropdownSelect
+                  label="Categoria"
+                  data={dropdownExpense}
+                  placeholder="Selecione a categoria"
+                  value={selectedValue}
+                  onSelect={(value) => setSelectedValue(value)}
+                />
+              </View>
+            )}
+
             <View style={styles.containerInput}>
               <View style={styles.containerFlex}>
                 <View style={styles.input}>

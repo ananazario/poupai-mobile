@@ -9,7 +9,7 @@ export const dropdownStyles = (colors: Colors) =>
       width: '100%'
     },
     label: {
-      ...typography.body3,
+      ...typography.body2,
       color: colors.textColor,
     },
     dropdown: {
