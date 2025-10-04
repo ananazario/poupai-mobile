@@ -7,18 +7,21 @@ import { Input } from "../../Input";
 import { editModalStyles } from "./editModal.styles";
 import { EditModalProps } from "./editModal.types";
 
-export const EditModal = ({type}: EditModalProps ) => {
-    const {colors} = useTheme();
-    const styles = editModalStyles(colors);
+export const EditModal = ({ type }: EditModalProps) => {
+  const { colors } = useTheme();
+  const styles = editModalStyles(colors);
 
-    const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-    const title = type === 'receitas' ? 'Receita' : type === 'despesas' ? 'Despesas' : 'transferencias'
+  const title =
+    type === "receitas"
+      ? "Receita"
+      : type === "despesas"
+      ? "Despesas"
+      : "transferencias";
 
-    
-
-    return(
-        <View>
+  return (
+    <View>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
         <SquarePen color={colors.textColor} />
       </TouchableOpacity>
@@ -37,7 +40,6 @@ export const EditModal = ({type}: EditModalProps ) => {
               </TouchableOpacity>
             </View>
             <View style={styles.containerInput}>
-              
               <View style={styles.containerFlex}>
                 <View style={styles.input}>
                   <Input label="Valor" type="number" placeholder="R$ 0,00" />
@@ -48,10 +50,10 @@ export const EditModal = ({type}: EditModalProps ) => {
               </View>
               <View style={styles.containerButton}>
                 <View style={styles.button}>
-                <Button title="Cancelar" color="red"/>
+                  <Button title="Cancelar" color="red" />
                 </View>
                 <View style={styles.button}>
-                <Button title="Editar" color="blue"/>
+                  <Button title="Editar" color="blue" />
                 </View>
               </View>
             </View>
@@ -59,6 +61,5 @@ export const EditModal = ({type}: EditModalProps ) => {
         </View>
       </Modal>
     </View>
-    )
-
-}
+  );
+};
