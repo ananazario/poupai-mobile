@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { Text, TouchableOpacity } from "react-native";
 import { buttonStyles } from "./button.styles";
 
-export const Button = ({ title, onPress, color, href }: ButtonProps) => {
+export const Button = ({ title, onPress, color, href, disabled }: ButtonProps) => {
   const { colors } = useTheme();
   const styles = buttonStyles(colors);
 
@@ -14,8 +14,10 @@ export const Button = ({ title, onPress, color, href }: ButtonProps) => {
       : color === "yellow"
       ? colors.yellowNormal
       : color === "red"
-      ? colors.redNormal
-      : colors.white;
+      ? colors.redNormal 
+      : color === 'white' 
+      ? colors.white 
+      : colors.purple500;
 
   const textColor =
     color === "yellow"
