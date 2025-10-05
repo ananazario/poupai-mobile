@@ -11,7 +11,7 @@ import { InputProps } from './input.types';
 import { useTheme } from '@/app/theme/ThemeContext';
 import { inputStyles } from './input.styles';
 import { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react-native';
+import { Eye, EyeOff, MapPinHouse } from 'lucide-react-native';
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
