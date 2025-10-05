@@ -35,7 +35,6 @@ export const HomeView = () => {
           title="Transfêrencia"
           type="transferencias"
         ></ActionButtons>
-        <ActionButtons title="Extrato" onPress={() => router.push("/Transactions")} type="extrato"></ActionButtons>
         <ActionButtons
           title="Extrato"
           onPress={() => router.push("/Transactions")}
