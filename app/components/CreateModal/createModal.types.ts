@@ -1,3 +1,6 @@
 export type CreateModalProps = {
-    type: 'receitas' | 'despesas' | 'transferencias';
+      type: "receitas" | "despesas" | "transferencias";
+  where?: "button" | "actions";
+  visible: boolean; 
+  onClose: () => void;
 }
