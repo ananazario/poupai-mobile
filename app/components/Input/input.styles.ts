@@ -21,7 +21,7 @@ export const inputStyles = (colors: Colors) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      minHeight: 40,
+      minHeight: 55,
     },
     input: {
       ...typography.body2,
