@@ -23,16 +23,19 @@ export const HomeView = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.containerActions}>
+        
+        
         <ActionButtons
           title="Receitas"
           onPress={() => router.push("/Income")}
           type="receitas"
         ></ActionButtons>
-        <ActionButtons title="Despesas" type="despesas"></ActionButtons>
+        <ActionButtons title="Despesas" onPress={() => router.push("/Expense")} type="despesas"></ActionButtons>
         <ActionButtons
           title="Transfêrencia"
           type="transferencias"
         ></ActionButtons>
+        <ActionButtons title="Extrato" onPress={() => router.push("/Transactions")} type="extrato"></ActionButtons>
         <ActionButtons
           title="Extrato"
           onPress={() => router.push("/Transactions")}
