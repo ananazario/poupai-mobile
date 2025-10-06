@@ -8,6 +8,7 @@ import { Chip } from "@/app/components/Chip";
 import { TransactionsModel } from "./transactions.model";
 import { Search } from "@/app/components/Search";
 import { CardTransactions } from "@/app/components/CardTransactions";
+import { TransactionsButton } from "@/app/components/TransactionButton";
 
 export const TransactionsView = () => {
   const { colors } = useTheme();
@@ -39,12 +40,25 @@ export const TransactionsView = () => {
           <Chip key={chip.id} data={chip} onPress={toggleChip} />
         ))}
       </ScrollView>
-        <Search />
+      <Search />
       <View>
-        <CardTransactions type="despesas" />
-        <CardTransactions type="receitas" />
-        <CardTransactions type="transferencias" />
+        <ScrollView style={styles.cards} showsHorizontalScrollIndicator={false}>
+          <CardTransactions type="despesas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="transferencias" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="transferencias" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="transferencias" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="transferencias" />
+          
+        </ScrollView>
       </View>
+      <TransactionsButton text="Adicionar Transferencia" />
     </View>
   );
 };

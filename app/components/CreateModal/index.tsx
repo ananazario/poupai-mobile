@@ -1,5 +1,6 @@
 import { useTheme } from "@/app/theme/ThemeContext";
-import { X } from "lucide-react-native";
+import { ArrowDown, ArrowUp, History, Repeat, SquarePen, X } from "lucide-react-native";
+import { useState } from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 import { DropdownSelect } from "../Dropdown";
 import { Input } from "../Input";
@@ -8,7 +9,7 @@ import { CreateModalProps } from "./createModal.types";
 import { createModalStyles } from "./createModal.styles";
 import { useState } from "react";
 
-export const CreateModal = ({ type, visible, onClose }: CreateModalProps) => {
+export const CreateModal = ({ type, where, visible, onClose }: CreateModalProps) => {
   const { colors } = useTheme();
   const styles = createModalStyles(colors);
   const [selectedValue, setSelectedValue] = useState<string>("");
@@ -19,6 +20,10 @@ export const CreateModal = ({ type, visible, onClose }: CreateModalProps) => {
       : type === "despesas"
       ? "Despesas"
       : "Transferências";
+
+  const color =
+    where === "button"
+      ? 'transparent' : colors.textColor
 
   const isTransfer = type === "transferencias";
   const isIncome = type === "receitas";
@@ -35,6 +40,15 @@ export const CreateModal = ({ type, visible, onClose }: CreateModalProps) => {
     { label: "Alimentação", value: "food" },
     { label: "Saude", value: "health" },
   ];
+
+  const iconMap = {
+        receitas: ArrowUp,
+        despesas: ArrowDown,
+        transferencias: Repeat,
+        extrato: History
+    }
+
+    const Icon = iconMap[type]
 
   return (
     <Modal

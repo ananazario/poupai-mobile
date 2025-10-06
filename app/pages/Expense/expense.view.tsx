@@ -1,13 +1,14 @@
+import { CardTransactions } from "@/app/components/CardTransactions";
+import { Chip } from "@/app/components/Chip";
 import { LedgerCard } from "@/app/components/LedgerCard";
+import { Search } from "@/app/components/Search";
+import { TransactionsButton } from "@/app/components/TransactionButton";
 import { useTheme } from "@/app/theme/ThemeContext";
+import { router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { router } from "expo-router";
-import { Chip } from "@/app/components/Chip";
-import { Search } from "@/app/components/Search";
-import { CardTransactions } from "@/app/components/CardTransactions";
-import { expenseStyle } from "./expense.style";
 import { ExpenseModel } from "./expense.model";
+import { expenseStyle } from "./expense.style";
 
 export const ExpenseView = () => {
   const { colors } = useTheme();
@@ -39,12 +40,20 @@ export const ExpenseView = () => {
           <Chip key={chip.id} data={chip} onPress={toggleChip} />
         ))}
       </ScrollView>
-        <Search />
+      <Search />
       <View>
-        <CardTransactions type="despesas" />
-        <CardTransactions type="despesas" />
-        <CardTransactions type="despesas" />
+        <ScrollView style={styles.cards} showsHorizontalScrollIndicator={false}>
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+          <CardTransactions type="despesas" />
+        </ScrollView>
       </View>
+      <TransactionsButton text="Adicionar Despesa" />
     </View>
   );
 };
