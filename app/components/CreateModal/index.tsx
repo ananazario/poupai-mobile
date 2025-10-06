@@ -1,13 +1,12 @@
 import { useTheme } from "@/app/theme/ThemeContext";
-import { ArrowDown, ArrowUp, History, Repeat, SquarePen, X } from "lucide-react-native";
+import { ArrowDown, ArrowUp, History, Repeat, X } from "lucide-react-native";
 import { useState } from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { Button } from "../Button";
 import { DropdownSelect } from "../Dropdown";
 import { Input } from "../Input";
-import { Button } from "../Button";
-import { CreateModalProps } from "./createModal.types";
 import { createModalStyles } from "./createModal.styles";
-import { useState } from "react";
+import { CreateModalProps } from "./createModal.types";
 
 export const CreateModal = ({ type, where, visible, onClose }: CreateModalProps) => {
   const { colors } = useTheme();

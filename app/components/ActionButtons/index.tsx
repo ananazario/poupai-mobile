@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { CreateModal } from "../CreateModal";
 import { actionButtonsStyle } from "./button.styles";
 import { ActionButtonsProps } from "./button.types";
+import { ExtractModal } from "../modals/ExtractModal";
 
 export const ActionButtons = ({ type, title }: ActionButtonsProps) => {
   const { colors } = useTheme();
@@ -31,7 +32,7 @@ const openModal = () => setModalVisible(true);
       <Text style={styles.text}>{title}</Text>
 
       {modalVisible && type === "extrato" && (
-        <CreateModal type='receitas' visible={modalVisible} onClose={closeModal} />
+        <ExtractModal visible={modalVisible} onClose={closeModal} />
       )}
 
       {modalVisible && type !== "extrato" && (

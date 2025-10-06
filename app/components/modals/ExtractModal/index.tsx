@@ -5,13 +5,10 @@ import { X } from "lucide-react-native";
 import { useTheme } from "@/app/theme/ThemeContext";
 import { DropdownSelect } from "../../Dropdown";
 import { createModalStyles } from "../../CreateModal/createModal.styles";
+import { extractModalProps } from "./extractModal.types";
 
-type NavigationModalProps = {
-  visible: boolean;
-  onClose: () => void;
-};
 
-export const NavigationModal = ({ visible, onClose }: NavigationModalProps) => {
+export const ExtractModal = ({ visible, onClose }: extractModalProps) => {
   const { colors } = useTheme();
   const styles = createModalStyles(colors);
   const router = useRouter();
