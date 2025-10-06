@@ -1,5 +1,5 @@
 import { useTheme } from "@/app/theme/ThemeContext";
-import { SquarePen, X } from "lucide-react-native";
+import { ArrowDown, ArrowUp, History, Repeat, SquarePen, X } from "lucide-react-native";
 import { useState } from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 import { DropdownSelect } from "../Dropdown";
@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { CreateModalProps } from "./createModal.types";
 import { createModalStyles } from "./createModal.styles";
 
-export const CreateModal = ({ type }: CreateModalProps) => {
+export const CreateModal = ({ type, where, visible, onClose }: CreateModalProps) => {
   const { colors } = useTheme();
   const styles = createModalStyles(colors);
 
@@ -22,6 +22,10 @@ export const CreateModal = ({ type }: CreateModalProps) => {
       : type === "despesas"
       ? "Despesas"
       : "Transferências";
+
+  const color =
+    where === "button"
+      ? 'transparent' : colors.textColor
 
   const isTransfer = type === "transferencias";
   const isIncome = type === "receitas";
@@ -39,22 +43,31 @@ export const CreateModal = ({ type }: CreateModalProps) => {
     { label: "Saude", value: "health" },
   ];
 
+  const iconMap = {
+        receitas: ArrowUp,
+        despesas: ArrowDown,
+        transferencias: Repeat,
+        extrato: History
+    }
+
+    const Icon = iconMap[type]
+
   return (
     <View>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <SquarePen color={colors.textColor} />
+        <Icon color={color}/>
       </TouchableOpacity>
 
       <Modal
-        visible={modalVisible}
+        visible={visible}
         transparent={true}
-        onRequestClose={() => setModalVisible(false)}
+        onRequestClose={onClose}
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalView}>
             <View style={styles.nav}>
               <Text style={styles.title}>{title}</Text>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
+              <TouchableOpacity onPress={onClose}>
                 <X color={colors.textColor} />
               </TouchableOpacity>
             </View>

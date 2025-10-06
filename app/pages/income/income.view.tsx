@@ -8,6 +8,7 @@ import { ChevronLeft } from "lucide-react-native";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { IncomeModel } from "./income.model";
 import { incomeStyles } from "./income.styles";
+import { TransactionsButton } from "@/app/components/TransactionButton";
 
 export const IncomeView = () => {
   const { colors } = useTheme();
@@ -39,12 +40,26 @@ export const IncomeView = () => {
           <Chip key={chip.id} data={chip} onPress={toggleChip} />
         ))}
       </ScrollView>
-        <Search />
+      <Search />
       <View>
-        <CardTransactions type="receitas" />
-        <CardTransactions type="receitas" />
-        <CardTransactions type="receitas" />
+        <ScrollView style={styles.cards} showsHorizontalScrollIndicator={false}>
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          
+        </ScrollView>
       </View>
+      <TransactionsButton text="Adicionar Receita" />
     </View>
   );
 };

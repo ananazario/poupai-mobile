@@ -29,7 +29,12 @@ export const incomeStyles = (colors: Colors) => StyleSheet.create({
         justifyContent: 'space-between'
     },
     carousel:{
+        minHeight: 50,
         maxHeight: 50
+    },
+    cards:{
+        minHeight: '80%',
+        maxHeight: "80%"
     }
     
 })
