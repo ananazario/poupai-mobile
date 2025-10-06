@@ -1,4 +1,6 @@
 import { Button } from "@/app/components/Button";
+import { Input } from "@/app/components/Input";
+import { useTheme } from "@/app/theme/ThemeContext";
 import { Link, router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import {
@@ -7,24 +9,31 @@ import {
   Platform,
   ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  View
 } from "react-native";
 import { signupStyles } from "./signup.styles";
-import { useTheme } from "@/app/theme/ThemeContext";
-import { Input } from "@/app/components/Input";
+import { SignupProps } from "./signup.type";
 
-export const SignupView = () => {
+export const SignupView = (props: SignupProps) => {
+  const {
+    email,
+    handleEmail,
+    password,
+    handlePassword,
+    handleSignUp
+  } = props;
+
   const {colors} = useTheme();
   const styles = signupStyles(colors);
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <TouchableWithoutFeedback accessible={false}>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
@@ -47,18 +56,22 @@ export const SignupView = () => {
                 label="Email"
                 placeholder="Digite seu email"
                 type="email"
+                value={email}
+                onChangeText={handleEmail}
               />
               <Input
                 label="Senha"
                 placeholder="Digite sua senha"
                 type="password"
+                value={password}
+                onChangeText={handlePassword}
               />
               <Input
                 label="Confirme sua senha"
                 placeholder="Digite sua senha novamente"
                 type="confirmPassword"
               />
-              <Button color="blue" title="Cadastrar" href="/Login" />
+              <Button onPress={handleSignUp} color="blue" title="Cadastrar" href="/Login" />
               <Text style={styles.textLink}>
                 Já poussui uma conta? <Link style={styles.link} href="/Login">Login</Link>
               </Text>

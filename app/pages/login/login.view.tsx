@@ -1,28 +1,32 @@
+import { Button } from "@/app/components/Button";
+import { Input } from "@/app/components/Input";
+import { useTheme } from "@/app/theme/ThemeContext";
+import { FontAwesome } from "@expo/vector-icons";
+import Checkbox from "expo-checkbox";
+import { Link, router } from "expo-router";
+import { ChevronLeft } from "lucide-react-native";
 import {
-  Image,
   KeyboardAvoidingView,
+  Linking,
   Platform,
   ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  View
 } from "react-native";
-import { Link, router } from "expo-router";
-import Checkbox from "expo-checkbox";
-import { ChevronLeft } from "lucide-react-native";
-import { FontAwesome } from "@expo/vector-icons";
 import { loginModel } from "./login.model";
-import { Input } from "@/app/components/Input";
-import { Button } from "@/app/components/Button";
-import { useTheme } from "@/app/theme/ThemeContext";
 import { loginStyles } from "./login.styles";
 
 export const LoginView = () => {
-  const{
+  const {
+    email,
+    handleEmail,
+    password,
+    handlePassword,
     isChecked,
     setChecked,
+    handleLogin,
   } = loginModel();
 
   const {colors} = useTheme();
@@ -52,8 +56,8 @@ export const LoginView = () => {
         </View>
 
         <View style={styles.content}>
-          <Input type="text" label="Email" placeholder="Digite seu email" />
-          <Input type="password" label="Senha" placeholder="Digite sua Senha" />
+          <Input type="text" label="Email" placeholder="Digite seu email" value={email} onChangeText={handleEmail} />
+          <Input type="password" label="Senha" placeholder="Digite sua Senha" value={password} onChangeText={handlePassword} />
 
           <View style={styles.checkSection}>
             <Checkbox
@@ -64,7 +68,7 @@ export const LoginView = () => {
             <Text style={styles.textCheck}>Permanecer conectado</Text>
           </View>
 
-          <Button title="Entrar" color="blue" href='/Home' />
+          <Button onPress={handleLogin} title="Entrar" color="blue" />
 
           <Text style={styles.textLink}>
             Ainda não tem uma conta?{" "}
