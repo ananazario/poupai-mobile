@@ -1,14 +1,14 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { SettingsView } from "../pages/Settings/settings.view";
+import { PasswordView } from "../pages/Password/password.view";
 import { ThemeProvider } from "../theme/ThemeContext";
 
 
-export default function SettingsPage() {
+export default function PasswordPage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <SettingsView />
+          <PasswordView/>
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>

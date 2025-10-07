@@ -2,7 +2,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { HomeView } from "../pages/home/home.view";
 import { ThemeProvider } from "../theme/ThemeContext";
 
-export default function LoginPage() {
+export default function HomePage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
