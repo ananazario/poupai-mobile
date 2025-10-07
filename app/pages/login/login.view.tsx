@@ -20,14 +20,14 @@ import { loginStyles } from "./login.styles";
 
 export const LoginView = () => {
   const {
-    email,
-    handleEmail,
-    password,
-    handlePassword,
-    isChecked,
-    setChecked,
-    handleLogin,
-  } = loginModel();
+    email,
+    handleEmail,
+    password,
+    handlePassword,
+    isChecked,
+    setChecked,
+    handleLogin,
+  } = loginModel()
 
   const {colors} = useTheme();
   const styles = loginStyles(colors);
