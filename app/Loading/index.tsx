@@ -1,14 +1,13 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { LoadingView } from "../pages/Loading/loading.view";
 import { ThemeProvider } from "../theme/ThemeContext";
-import { SettingsView } from "../pages/Settings/settings.view";
 
-
-export default function SettingsPage() {
+export default function LoagindPage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <SettingsView />
+          <LoadingView />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>
