@@ -21,7 +21,7 @@ export const SettingsView = () => {
                 <View></View>
             </View>
             <OptionsCard  type="theme"/>
-            <OptionsCard  type="default" title="Alterar senha"/>
+            <OptionsCard  type="default" title="Alterar senha" onPress={() => router.push('/Password')}/>
             <OptionsCard  type="default" title="Excluir conta"/>
             <OptionsCard  type="default" title="Sair"/>
         </View>

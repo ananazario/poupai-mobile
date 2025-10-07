@@ -3,7 +3,7 @@ import { TransactionsView } from "../pages/transactions/transactions.view";
 import { ThemeProvider } from "../theme/ThemeContext";
 import { ExpenseView } from "../pages/Expense/expense.view";
 
-export default function LoginPage() {
+export default function ExpensePage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>

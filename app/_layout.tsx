@@ -24,6 +24,7 @@ export default function RootLayout() {
       <Stack.Screen name="Transactions/index" options={{ headerShown: false }} />
       <Stack.Screen name="Expense/index" options={{ headerShown: false }} />
       <Stack.Screen name="Income/index" options={{ headerShown: false }} />
+      <Stack.Screen name="Password/index" options={{ headerShown: false }} />
       </Stack>
     </AuthProvider>
   );
