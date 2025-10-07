@@ -4,6 +4,7 @@ import {
   reload,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
   updateProfile,
   User,
 } from "firebase/auth";
@@ -57,4 +58,19 @@ export async function logout() {
   } catch (error: any) {
     throw new Error(error.message);
   }
+}
+
+export async function updatePasswordInFirebase(newPassword: string) {
+    const user = auth.currentUser;
+
+    if (!user) {
+        throw new Error("Usuário não autenticado.");
+    }
+
+    try {
+        await updatePassword(user, newPassword);
+        console.log("Senha atualizada com sucesso.");
+    } catch (error: any) {
+        throw new Error(error.message); 
+    }
 }
