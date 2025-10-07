@@ -1,6 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { InitialView } from "./pages/initial/initial.view";
 import { ThemeProvider } from "./theme/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
 import React from "react";
 import { LoadingView } from "./pages/Loading/loading.view";
 
@@ -15,12 +16,14 @@ export default function Index() {
 
 
   return (
-    <ThemeProvider>
-      <SafeAreaProvider>
-        <SafeAreaView  style={{ flex: 1 }}>
-           {loading ? <LoadingView /> : <InitialView />}
-        </SafeAreaView>
-      </SafeAreaProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <SafeAreaProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <InitialView />
+          </SafeAreaView>
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

@@ -1,5 +1,4 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-
 import { ThemeProvider } from "../theme/ThemeContext";
 import { SignupView } from "../pages/signup/signup.view";
 

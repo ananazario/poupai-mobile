@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import "react-native-reanimated";
+import { AuthProvider } from "./context/AuthContext";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -13,16 +14,18 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="Login/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Signup/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Home/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Settings/index" options={{ headerShown: false }} />
+    <AuthProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="Login/index" options={{ headerShown: false }} />
+        <Stack.Screen name="Signup/index" options={{ headerShown: false }} />
+        <Stack.Screen name="Home/index" options={{ headerShown: false }} />
+        <Stack.Screen name="Settings/index" options={{ headerShown: false }} />
       <Stack.Screen name="Transactions/index" options={{ headerShown: false }} />
       <Stack.Screen name="Expense/index" options={{ headerShown: false }} />
       <Stack.Screen name="Income/index" options={{ headerShown: false }} />
       <Stack.Screen name="Password/index" options={{ headerShown: false }} />
       </Stack>
+    </AuthProvider>
   );
 }
