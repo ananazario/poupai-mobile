@@ -2,11 +2,10 @@ import { Colors } from '@/app/theme/colors';
 import { typography } from '@/app/theme/typography';
 import { Platform, StyleSheet } from 'react-native';
 
-export const inputStyles = (colors: Colors) =>
+export const searchStyles = (colors: Colors) =>
   StyleSheet.create({
     container: {
       gap: 5,
-      minWidth: '48%',
     },
     label: {
       ...typography.body2,
@@ -21,7 +20,8 @@ export const inputStyles = (colors: Colors) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      minHeight: 55,
+      minHeight: 40,
+      gap: 8,
     },
     input: {
       ...typography.body2,
@@ -30,21 +30,5 @@ export const inputStyles = (colors: Colors) =>
       minHeight: 30,
       justifyContent: 'center',
       alignItems: 'center',
-    },
-    modalOverlay: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0,0,0,0.5)',
-    },
-    pickerContainer: {
-      backgroundColor: colors.background,
-      color: colors.textColor,
-      borderRadius: 10,
-      padding: 20,
-    },
-    doneButton: {
-      marginTop: 10,
-      alignSelf: 'flex-end',
     },
   });

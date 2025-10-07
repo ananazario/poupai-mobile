@@ -21,10 +21,9 @@ export default function RootLayout() {
         <Stack.Screen name="Signup/index" options={{ headerShown: false }} />
         <Stack.Screen name="Home/index" options={{ headerShown: false }} />
         <Stack.Screen name="Settings/index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="Transactions/index"
-          options={{ headerShown: false }}
-        />
+      <Stack.Screen name="Transactions/index" options={{ headerShown: false }} />
+      <Stack.Screen name="Expense/index" options={{ headerShown: false }} />
+      <Stack.Screen name="Income/index" options={{ headerShown: false }} />
       </Stack>
     </AuthProvider>
   );

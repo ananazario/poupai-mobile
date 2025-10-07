@@ -10,7 +10,7 @@ const initialChips: ChipType[] = [
   { id: "6", label: "Último ano", selected: false, range: "365d" },
 ];
 
-export function TransactionsModel() {
+export function ExpenseModel() {
     const{ chips, toggleChip} = useChips(initialChips);
 
     return {

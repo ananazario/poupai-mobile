@@ -1,20 +1,20 @@
+import { CardTransactions } from "@/app/components/CardTransactions";
+import { Chip } from "@/app/components/Chip";
 import { LedgerCard } from "@/app/components/LedgerCard";
+import { Search } from "@/app/components/Search";
 import { useTheme } from "@/app/theme/ThemeContext";
+import { router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { transactionsStyle } from "./transactions.styles";
-import { router } from "expo-router";
-import { Chip } from "@/app/components/Chip";
-import { TransactionsModel } from "./transactions.model";
-import { Search } from "@/app/components/Search";
-import { CardTransactions } from "@/app/components/CardTransactions";
+import { IncomeModel } from "./income.model";
+import { incomeStyles } from "./income.styles";
 import { TransactionsButton } from "@/app/components/TransactionButton";
 
-export const TransactionsView = () => {
+export const IncomeView = () => {
   const { colors } = useTheme();
-  const styles = transactionsStyle(colors);
+  const styles = incomeStyles(colors);
 
-  const { chips, toggleChip } = TransactionsModel();
+  const { chips, toggleChip } = IncomeModel();
 
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ export const TransactionsView = () => {
           <TouchableOpacity onPress={() => router.push("/Home")}>
             <ChevronLeft color={colors.white} />
           </TouchableOpacity>
-          <Text style={styles.navText}>Transações</Text>
+          <Text style={styles.navText}>Receitas</Text>
           <View />
         </View>
         <View style={styles.containerLedger}>
@@ -43,22 +43,23 @@ export const TransactionsView = () => {
       <Search />
       <View>
         <ScrollView style={styles.cards} showsHorizontalScrollIndicator={false}>
-          <CardTransactions type="despesas" />
           <CardTransactions type="receitas" />
-          <CardTransactions type="transferencias" />
-          <CardTransactions type="despesas" />
           <CardTransactions type="receitas" />
-          <CardTransactions type="transferencias" />
-          <CardTransactions type="despesas" />
           <CardTransactions type="receitas" />
-          <CardTransactions type="transferencias" />
-          <CardTransactions type="despesas" />
           <CardTransactions type="receitas" />
-          <CardTransactions type="transferencias" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
+          <CardTransactions type="receitas" />
           
         </ScrollView>
       </View>
-      <TransactionsButton text="Adicionar Transferencia" />
+      <TransactionsButton text="Adicionar Receita" />
     </View>
   );
 };

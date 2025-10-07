@@ -11,15 +11,15 @@ export const ledgerCardStyle = (colors: Colors) =>
       backgroundColor: colors.backgroundSecondary,
       padding: Platform.select({
         ios: 8,
-        android: 12,
+        android: 8,
         web: 10,
       }),
       gap: 10,
       alignItems: "center",
     },
     icon: {
-      width: 45,
-      height: 45,
+      width: 35,
+      height: 35,
       borderRadius: 100,
       justifyContent: "center",
       alignItems: "center",

@@ -2,7 +2,7 @@ import { Colors } from "@/app/theme/colors";
 import { typography } from "@/app/theme/typography";
 import { StyleSheet } from "react-native";
 
-export const transactionsStyle = (colors : Colors) => StyleSheet.create({
+export const incomeStyles = (colors: Colors) => StyleSheet.create({
     container:{
         height: '100%', 
         paddingVertical: 60,
@@ -36,4 +36,5 @@ export const transactionsStyle = (colors : Colors) => StyleSheet.create({
         minHeight: '80%',
         maxHeight: "80%"
     }
+    
 })
