@@ -29,6 +29,7 @@ export const CreateModal = ({
   const isIncome = type === 'receitas';
 
   const dropdownBank = [
+  
     { label: 'Nubank', value: 'nu' },
     { label: 'Itau', value: 'itau' },
   ];
@@ -75,6 +76,7 @@ export const CreateModal = ({
       onClose();
 
     } catch (error) {
+      console.error("ERRO DETALHADO AO SALVAR:", error);
       Alert.alert('Erro', 'Não foi possível salvar a transação.');
     } finally {
       setIsLoading(false);
