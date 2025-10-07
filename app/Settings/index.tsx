@@ -1,6 +1,6 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { SettingsView } from "../pages/Settings/settings.view";
 import { ThemeProvider } from "../theme/ThemeContext";
+import { SettingsView } from "../pages/Settings/settings.view";
 
 
 export default function LoginPage() {
