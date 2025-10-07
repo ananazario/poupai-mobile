@@ -66,7 +66,6 @@ export const HomeView = ({ transactions = [], loading }: HomeViewProps) => {
     <View style={styles.container}>
       {renderHeader()}
       
-{renderHeader()}
 {/* Descomente e adicione seus botões aqui */}
   <View style={styles.containerActions}>
        <ActionButtons title="Receitas" type="receitas"></ActionButtons>
@@ -82,9 +81,7 @@ export const HomeView = ({ transactions = [], loading }: HomeViewProps) => {
   {renderBody()}
 </View>
 
-      <View style={styles.listContainer}>
-        {renderBody()}
-      </View>
+      
     </View>
   );
 };
