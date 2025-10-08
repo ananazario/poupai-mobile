@@ -1,10 +1,11 @@
-// /models/transaction.model.ts
+// Copie e cole TUDO isto para o seu arquivo /models/transaction.model.ts
 
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
+  limit,
   onSnapshot,
   orderBy,
   query,
@@ -30,12 +31,10 @@ export interface Transacao {
  * Salva uma nova transação no Firestore.
  */
 export const salvarNovaTransacao = async (
-  transacaoData: Omit<Transacao, 'userId' | 'id'> // Não precisamos passar id ou userId
+  transacaoData: Omit<Transacao, 'id' | 'userId'>
 ) => {
   const user = auth.currentUser;
-  if (!user) {
-    throw new Error('Usuário não autenticado.');
-  }
+  if (!user) throw new Error('Usuário não autenticado.');
 
   try {
     const docRef = await addDoc(collection(db, 'transacoes'), {
@@ -43,7 +42,6 @@ export const salvarNovaTransacao = async (
       userId: user.uid,
       criadoEm: serverTimestamp(),
     });
-    console.log('Transação salva com o ID: ', docRef.id);
     return docRef;
   } catch (error) {
     console.error('Erro ao salvar a transação: ', error);
@@ -56,12 +54,16 @@ export const salvarNovaTransacao = async (
  */
 export const escutarTransacoes = (
   callback: (transacoes: Transacao[]) => void,
-  filter?: 'receitas' | 'despesas'
+  // A "TOMADA" MODERNA E CORRETA, que aceita um objeto de opções
+  options?: {
+    filter?: 'receitas' | 'despesas';
+    limit?: number;
+  }
 ) => {
   const user = auth.currentUser;
   if (!user) {
     console.error('Usuário não autenticado para buscar transações.');
-    return () => {}; // Retorna uma função de unsubscribe vazia
+    return () => {};
   }
 
   const transacoesCollection = collection(db, 'transacoes');
@@ -71,59 +73,63 @@ export const escutarTransacoes = (
     orderBy('data', 'desc')
   );
 
-  if (filter) {
-    q = query(q, where('tipo', '==', filter));
+  if (options?.filter) {
+    q = query(q, where('tipo', '==', options.filter));
+  }
+  if (options?.limit) {
+    q = query(q, limit(options.limit));
   }
 
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const transacoesData: Transacao[] = [];
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      transacoesData.push({
-        id: doc.id,
-        ...data,
-        data: (data.data as Timestamp).toDate(),
-      } as Transacao);
-    });
-    callback(transacoesData);
-  });
+  const unsubscribe = onSnapshot(
+    q,
+    (querySnapshot) => {
+      const transacoesData: Transacao[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        transacoesData.push({
+          id: doc.id,
+          ...data,
+          data: (data.data as Timestamp).toDate(),
+        } as Transacao);
+      });
+      callback(transacoesData);
+    },
+    (error) => {
+      console.error('ERRO no ouvinte onSnapshot:', error);
+    }
+  );
 
-  return unsubscribe; // Retorna a função para parar de "ouvir"
+  return unsubscribe;
 };
 
 /**
  * Deleta uma transação do Firestore com base no seu ID.
  */
 export const deletarTransacao = async (idDaTransacao: string) => {
-  if (!idDaTransacao) {
-    throw new Error('ID da transação não fornecido.');
-  }
+  if (!idDaTransacao) throw new Error('ID da transação não fornecido.');
 
   try {
     const transacaoDocRef = doc(db, 'transacoes', idDaTransacao);
     await deleteDoc(transacaoDocRef);
-    console.log('Transação deletada com sucesso!');
   } catch (error) {
     console.error('Erro ao deletar transação: ', error);
     throw error;
   }
 };
 
-
-export const atualizarTransacao = async (idDaTransacao: string, dadosParaAtualizar: Partial<Transacao>) => {
-  if (!idDaTransacao) {
-    throw new Error("ID da transação não fornecido para atualização.");
-  }
-
-  // Cria uma referência para o documento específico que queremos editar
+/**
+ * Atualiza uma transação no Firestore.
+ */
+export const atualizarTransacao = async (
+  idDaTransacao: string,
+  dadosParaAtualizar: Partial<Omit<Transacao, 'id' | 'userId'>>
+) => {
+  if (!idDaTransacao) throw new Error('ID da transação não fornecido.');
   const transacaoDocRef = doc(db, 'transacoes', idDaTransacao);
-
   try {
-    // Atualiza o documento com os novos dados
     await updateDoc(transacaoDocRef, dadosParaAtualizar);
-    console.log("Transação atualizada com sucesso!");
   } catch (error) {
-    console.error("Erro ao atualizar transação: ", error);
+    console.error('Erro ao atualizar transação:', error);
     throw error;
   }
 };
