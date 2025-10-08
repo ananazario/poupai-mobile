@@ -1,30 +1,47 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { ActionButtonsProps } from "./button.types";
 import { useTheme } from "@/app/theme/ThemeContext";
-import { actionButtonsStyle } from "./button.styles";
 import { ArrowDown, ArrowUp, History, Repeat } from "lucide-react-native";
+import { useState } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+import { CreateModal } from "../CreateModal";
+import { actionButtonsStyle } from "./button.styles";
+import { ActionButtonsProps } from "./button.types";
+import { ExtractModal } from "../modals/ExtractModal";
 
+export const ActionButtons = ({ type, title }: ActionButtonsProps) => {
+  const { colors } = useTheme();
+  const styles = actionButtonsStyle(colors);
+  const [modalVisible, setModalVisible] = useState(false);
 
-export const ActionButtons = ({type, title,  onPress}:ActionButtonsProps) => {
+  const iconMap = {
+    receitas: ArrowUp,
+    despesas: ArrowDown,
+    transferencias: Repeat,
+    extrato: History,
+  };
 
-    const {colors} = useTheme();
-    const styles = actionButtonsStyle(colors);
+  const Icon = iconMap[type];
+const openModal = () => setModalVisible(true);
+  const closeModal = () => setModalVisible(false);
 
-    const iconMap = {
-        receitas: ArrowUp,
-        despesas: ArrowDown,
-        transferencias: Repeat,
-        extrato: History
-    }
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.containerIcon} onPress={openModal}>
+        <Icon color={colors.textColor} />
+      </TouchableOpacity>
 
-    const Icon = iconMap[type]
+      <Text style={styles.text}>{title}</Text>
 
-    return(
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.containerIcon} onPress={onPress}>
-                <Icon color={colors.textColor}/>
-            </TouchableOpacity>
-            <Text style={styles.text}>{title}</Text>
-        </View>
-    )
-}
+      {modalVisible && type === "extrato" && (
+        <ExtractModal visible={modalVisible} onClose={closeModal} />
+      )}
+
+      {modalVisible && type !== "extrato" && (
+        <CreateModal
+          type={type}
+          visible={modalVisible}
+          onClose={closeModal}
+        />
+      )}
+    </View>
+  );
+};

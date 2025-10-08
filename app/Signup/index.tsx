@@ -1,8 +1,9 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { SignupView } from "../pages/signup/signup.view";
 import { ThemeProvider } from "../theme/ThemeContext";
+import { SignupView } from "../pages/signup/signup.view";
 
-export default function LoginPage() {
+
+export default function SignUpPage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>

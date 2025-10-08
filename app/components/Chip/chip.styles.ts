@@ -18,7 +18,7 @@ export const chipStyle = (colors: Colors) => StyleSheet.create({
         borderColor: colors.textColorBlue
     },
     textSelected:{
-        color: colors.textColor
+        color: colors.white
     },
     textUnselected:{
         color: colors.textColorBlue

@@ -18,7 +18,7 @@ export const OptionsCard = ({ type, title, onPress }: OptionsCardProps) => {
       {isDefault ? (
         <View style={styles.container}>
           <Text style={styles.text}>{title}</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onPress}>
             <ChevronRight color={colors.textColor}/>
           </TouchableOpacity>
         </View>
