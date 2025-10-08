@@ -41,21 +41,9 @@ try {
         { text: "OK", onPress: () => router.push("/Login") },
       ]);
     } catch (err: any) {
-      console.error("Erro no cadastro:", err.message);
-      let msg = "";
-
-      if (err.message.includes("auth/email-already-in-use")) {
-        msg = "Este email já está em uso.";
-      } else if (err.message.includes("auth/invalid-email")) {
-        msg = "O email informado é inválido.";
-      } else if (err.message.includes("auth/weak-password")) {
-        msg = "A senha deve ter pelo menos 6 caracteres.";
-      } else {
-        msg = "Erro ao cadastrar. Tente novamente.";
-      }
-
-      setMessage(msg);
-      Alert.alert("Erro", msg);
+      const error = err.message;
+      Alert.alert("Erro ao entrar", error)
+      setMessage(error);
     }
   }
 
