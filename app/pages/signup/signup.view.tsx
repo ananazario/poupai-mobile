@@ -28,7 +28,7 @@ export const SignupView = (props: SignupProps) => {
     handleConfirmPassword,
     handleSignUp,
     message 
-  } = props;
+  }  = signupModel();
 
   const {colors} = useTheme();
   const styles = signupStyles(colors);
