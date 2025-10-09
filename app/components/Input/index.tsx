@@ -1,7 +1,9 @@
 import { useTheme } from '@/app/theme/ThemeContext';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import { Eye, EyeOff } from 'lucide-react-native';
-import { useState } from 'react';
+import React, { useState } from 'react'; // Adicionado 'React' para JSX
 import {
   Platform,
   Pressable,
@@ -37,6 +39,17 @@ export const Input = ({
     );
   };
 
+  const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+    // Esconde o picker no Android após a seleção
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false);
+    }
+    // Chama a função do componente pai se uma data for selecionada
+    if (selectedDate) {
+      onDateChange?.(event, selectedDate);
+    }
+  };
+
   // O valor para o picker precisa ser um objeto Date.
   const datePickerValue = value instanceof Date ? value : new Date();
 
@@ -48,13 +61,20 @@ export const Input = ({
           <>
             <Pressable
               style={styles.input}
-              onPress={() => setShowDatePicker(true)}
+              onPress={() => {
+                // --- CORREÇÃO AQUI: Só tenta abrir o picker se NÃO for web ---
+                if (Platform.OS !== 'web') {
+                  setShowDatePicker(true);
+                } else {
+                  alert('A seleção de data não é suportada na web.');
+                }
+              }}
             >
               <Text
                 style={[
                   styles.input,
                   {
-                    color: value ? colors.textColor : colors.textColor,
+                    color: value ? colors.textColor : '#8e8e8e', // Cor para o placeholder
                     paddingVertical: 0,
                   },
                 ]}
@@ -62,18 +82,13 @@ export const Input = ({
                 {value ? formatDate(value as Date) : rest.placeholder}
               </Text>
             </Pressable>
-            {showDatePicker && (
+            {/* --- CORREÇÃO AQUI: Só renderiza o picker se NÃO for web --- */}
+            {showDatePicker && Platform.OS !== 'web' && (
               <DateTimePicker
                 value={datePickerValue}
                 mode="date"
                 display="default"
-                onChange={(event, date) => {
-                  if (Platform.OS === 'android') {
-                    setShowDatePicker(false);
-                  }
-                  // Chama o onDateChange diretamente, passando o evento e a data
-                  onDateChange?.(event, date);
-                }}
+                onChange={handleDateChange}
               />
             )}
           </>
@@ -82,7 +97,7 @@ export const Input = ({
             onChangeText={onChangeText}
             value={value as string}
             style={[styles.input, { color: colors.textColor }]}
-            placeholderTextColor={colors.textColor}
+            placeholderTextColor={'#8e8e8e'} // Cor para o placeholder
             secureTextEntry={isPasswordType && !showPassword}
             {...rest} // Passa todas as outras props
           />

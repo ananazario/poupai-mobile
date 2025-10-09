@@ -5,8 +5,8 @@ import { useTheme } from "@/app/theme/ThemeContext";
 import { router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import { Alert, Text, TouchableOpacity, View } from "react-native";
-import { settingsStyles } from "./settings.styles";
 import { settingsModel } from "./settings.model";
+import { settingsStyles } from "./settings.styles";
 
 export const SettingsView = () => {
   const { colors } = useTheme();
