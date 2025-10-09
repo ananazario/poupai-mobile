@@ -1,5 +1,5 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { SettingsView } from "../pages/Settings/settings.view";
+import { SettingsView } from "../pages/settings/settings.view";
 import { ThemeProvider } from "../theme/ThemeContext";
 
 
