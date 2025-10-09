@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/app/context/AuthContext"; 
 import { Alert } from "react-native";
 
-export function loginModel() {
+export function useLoginModel() {
   const { setUser } = useAuth(); 
 
   const [email, setEmail] = useState("");
