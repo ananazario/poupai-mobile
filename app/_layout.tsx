@@ -1,69 +1,67 @@
-import { Stack } from "expo-router";
+
+
+import { Stack, useRouter, useSegments } from "expo-router";
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect } from "react";
+import { ActivityIndicator, View } from "react-native";
 import "react-native-reanimated";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext"; // Verifique se o caminho está correto
 
-export default function RootLayout() {
-  const [user, setUser] = useState<User | null>(null);
-  const [authLoading, setAuthLoading] = useState(true);
+// Mantém a tela de splash visível enquanto preparamos o app
+SplashScreen.preventAutoHideAsync();
 
-  useEffect(() => {
-    // O "ouvinte" do Firebase que verifica o status do login
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      // Assim que a primeira verificação é feita, marcamos o carregamento como concluído
-      if (authLoading) {
-        setAuthLoading(false);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
+const RootLayoutNav = () => {
+  const { user, authLoading } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
 
   useEffect(() => {
-    // Se o carregamento da autenticação terminou E ainda não temos um usuário...
-    if (!authLoading && !user) {
-      // ...tentamos fazer o login anônimo para desenvolvimento.
-      signInAnonymously(auth).catch((error) => {
-        console.error("Erro no login anônimo de desenvolvimento:", error);
-        Alert.alert(
-          "Erro de Desenvolvimento",
-          `Não foi possível fazer o login anônimo: ${error.message}`
-        );
-        // Mesmo se o login falhar, escondemos a splash screen para não travar o app
-        SplashScreen.hideAsync();
-      });
-    }
-  }, [authLoading, user]);
+    const currentRoute = segments[0]?.toLowerCase();
+    
+     const isAuthScreen = currentRoute === undefined || currentRoute === 'login' || currentRoute === 'signup';
 
-  useEffect(() => {
-    // 2. Fica vigiando: Assim que o carregamento da autenticação terminar...
     if (!authLoading) {
-      // ...mandamos esconder a tela de splash.
       SplashScreen.hideAsync();
+
+      if (user && isAuthScreen) {
+        router.replace('/Home'); // Usa 'H' maiúsculo para corresponder à sua pasta
+      } else if (!user && !isAuthScreen) {
+        router.replace('/Login'); // Usa 'L' maiúsculo para corresponder à sua pasta
+      }
     }
-  }, [authLoading]); // ...este efeito roda sempre que 'authLoading' muda.
+  }, [user, authLoading, segments]);
 
-
-  // 3. Enquanto a verificação inicial não termina, não renderizamos nada.
-  // A tela de splash nativa continuará visível.
+  // Se a verificação inicial ainda não terminou, mostramos um loader.
+  // Isso evita que o Stack seja renderizado brevemente antes do redirecionamento.
   if (authLoading) {
-    return null;
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" />
+        </View>
+    );
   }
 
+  // Depois da verificação, renderiza o Stack Navigator com todas as suas telas.
+  return (
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="Login/index" />
+        <Stack.Screen name="Signup/index" />
+        <Stack.Screen name="Home/index" />
+        <Stack.Screen name="Settings/index" />
+        <Stack.Screen name="Transactions/index" />
+        <Stack.Screen name="Expense/index" />
+        <Stack.Screen name="Income/index" />
+        <Stack.Screen name="Password/index" />
+        <Stack.Screen name="Loading/index" /> 
+      </Stack>
+  );
+}
+
+export default function RootLayout() {
   return (
     <AuthProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="Login/index" options={{ headerShown: false }} />
-        <Stack.Screen name="Signup/index" options={{ headerShown: false }} />
-        <Stack.Screen name="Home/index" options={{ headerShown: false }} />
-        <Stack.Screen name="Settings/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Transactions/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Expense/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Income/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Password/index" options={{ headerShown: false }} />
-      <Stack.Screen name="Loading/index" options={{ headerShown: false }} />
-      </Stack>
+      <RootLayoutNav />
     </AuthProvider>
   );
 }
