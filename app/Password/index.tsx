@@ -1,14 +1,14 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { HomeView } from "../pages/home/home.view";
+import { PasswordView } from "../pages/Password/password.view";
 import { ThemeProvider } from "../theme/ThemeContext";
-import Home from "../pages/home/home";
 
-export default function HomePage() {
+
+export default function PasswordPage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <Home/>
+          <PasswordView/>
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>

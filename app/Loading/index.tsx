@@ -1,14 +1,13 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { HomeView } from "../pages/home/home.view";
+import { LoadingView } from "../pages/Loading/loading.view";
 import { ThemeProvider } from "../theme/ThemeContext";
-import Home from "../pages/home/home";
 
-export default function HomePage() {
+export default function LoagindPage() {
   return (
     <ThemeProvider>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <Home/>
+          <LoadingView />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>
