@@ -15,7 +15,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from "react-native";
-import { loginModel } from "./login.model";
+import { useLoginModel } from "./login.model";
 import { loginStyles } from "./login.styles";
 
 export const LoginView = () => {
@@ -27,7 +27,7 @@ export const LoginView = () => {
     isChecked,
     setChecked,
     handleLogin,
-  } = loginModel()
+  } = useLoginModel()
 
   const {colors} = useTheme();
   const styles = loginStyles(colors);

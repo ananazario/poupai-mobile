@@ -12,7 +12,6 @@ import {
   TouchableWithoutFeedback,
   View
 } from "react-native";
-import { signupModel } from "./signup.model";
 import { signupStyles } from "./signup.styles";
 import { SignupProps } from "./signup.type";
 

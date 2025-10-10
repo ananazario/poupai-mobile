@@ -3,7 +3,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Alert } from "react-native";
 
-export function signupModel() {
+export function useSignupModel() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +37,7 @@ try {
 
       const msg = "Usuário cadastrado com sucesso!";
       setMessage(msg);
+      router.push("/Login"); 
       Alert.alert("Sucesso", msg, [
         { text: "OK", onPress: () => router.push("/Login") },
       ]);
