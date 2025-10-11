@@ -29,19 +29,7 @@ export function loginModel() {
     router.push("/Home"); 
 
   } catch (err: any) {
-    console.error("Erro no login:", err.message); 
-    
-    let errorMessage = "Ocorreu um erro. Tente novamente.";
-    
-    if (err.message.includes("auth/invalid-email")) {
-        errorMessage = "O e-mail fornecido é inválido.";
-    } else if (err.message.includes("auth/user-not-found") || err.message.includes("auth/wrong-password")) {
-        errorMessage = "E-mail ou senha incorretos.";
-    } else if (err.message.includes("auth/missing-password")) {
-        errorMessage = "A senha não foi fornecida.";
-    }
-
-    Alert.alert("Erro de Login", errorMessage);
+    Alert.alert("Erro de Login", err.message);
   }
 }
 

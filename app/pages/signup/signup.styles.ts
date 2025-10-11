@@ -18,7 +18,7 @@ export const signupStyles = (colors :  Colors) => StyleSheet.create({
     },
     title:{
         ...typography.subtitle1,
-        fontWeight: 700,
+        fontWeight: '700',
         color: colors.textColor
     },
     paragraph:{

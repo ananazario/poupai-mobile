@@ -1,6 +1,6 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "../theme/ThemeContext";
-import { SignupView } from "../pages/signup/signup.view";
+import { SignupPage } from "../pages/signup";
 
 
 export default function SignUpPage() {
@@ -8,7 +8,7 @@ export default function SignUpPage() {
     <ThemeProvider>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <SignupView />
+          <SignupPage />
         </SafeAreaView>
       </SafeAreaProvider>
     </ThemeProvider>

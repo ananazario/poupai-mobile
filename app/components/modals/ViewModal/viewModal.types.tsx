@@ -1,8 +1,5 @@
-export type ViewModalProps = {
-    type: 'receitas' | 'despesas' | 'transferencias';
-    originBank?: string;
-    destinyBank?: string;
-    category?: string;
-    date?: string;
-    amount: string;
-};
+import { Transacao } from "@/app/models/transaction.model"; // Verifique se o caminho do seu model está correto
+
+export interface ViewModalProps {
+  transaction: Transacao;
+}

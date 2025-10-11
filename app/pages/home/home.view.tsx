@@ -1,11 +1,10 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { Bolt } from "lucide-react-native";
-import { useTheme } from "@/app/theme/ThemeContext";
-import { homeStyles } from "./home.styles";
 import { ActionButtons } from "@/app/components/ActionButtons";
-import { LedgerCard } from "@/app/components/LedgerCard";
-import { router } from "expo-router";
 import { useAuth } from "@/app/context/AuthContext";
+import { useTheme } from "@/app/theme/ThemeContext";
+import { router } from "expo-router";
+import { Bolt } from "lucide-react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import { homeStyles } from "./home.styles";
 
 export const HomeView = () => {
   const { colors } = useTheme();
@@ -13,6 +12,10 @@ export const HomeView = () => {
 
   const { user } = useAuth();
   const userName = user?.displayName || "Usuário";
+
+  function renderBody(): import("react").ReactNode {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <View style={styles.container}>
@@ -29,16 +32,18 @@ export const HomeView = () => {
       <View style={styles.containerActions}>
         <ActionButtons title="Receitas" type="receitas"></ActionButtons>
         <ActionButtons title="Despesas" type="despesas"></ActionButtons>
-        <ActionButtons
-          title="Transfêrencia"
-          type="transferencias"
-        ></ActionButtons>
-        <ActionButtons title="Extrato" type="extrato"></ActionButtons>
+      <ActionButtons
+       title="Transfêrencia"
+       type="transferencias"
+       ></ActionButtons>
+       <ActionButtons title="Extrato" type="extrato"></ActionButtons>
       </View>
-      <View style={styles.containerCard}>
-        <LedgerCard title="Receitas" amount="1000,60" type="income" />
-        <LedgerCard title="Despesas" amount="3100,20" type="expense" />
-      </View>
+
+<View style={styles.listContainer}>
+  {renderBody()}
+</View>
+
+      
     </View>
   );
 };
